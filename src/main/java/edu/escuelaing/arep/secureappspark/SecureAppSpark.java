@@ -16,7 +16,7 @@ public class SecureAppSpark {
         secure(getKeyStore(), getKeyStorePass(), null, null); 
         SecureUrlReader.trustStore(SecureAppSpark2.getKeyStore(), SecureAppSpark2.getKeyStorePass());
         port(getPort());
-        get("/hello", (req, res) -> "Hello Heroku");
+        get("/hello", (req, res) -> "Hello secureSpark 1");
         get("/remote", (req, res) -> SecureUrlReader.readURL(SecureAppSpark.getUrl()));
     }
     

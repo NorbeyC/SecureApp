@@ -17,7 +17,7 @@ public class SecureAppSpark {
         SecureUrlReader.trustStore(SecureAppSpark2.getKeyStore(), SecureAppSpark2.getKeyStorePass());
         port(getPort());
         get("/hello", (req, res) -> "Hello secureSpark 1");
-        get("/remote", (req, res) -> SecureUrlReader.readURL(SecureAppSpark.getUrl()));
+        get("/remote", (req, res) -> SecureUrlReader.readURL(SecureAppSpark2.getUrl()));
     }
     
     
@@ -32,7 +32,7 @@ public class SecureAppSpark {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "keystores/ecikeystore1.p12"; //returns default keystore if keystore isn't set (i.e. on localhost)
+        return "keystores/ecikeystore2.p12"; //returns default keystore if keystore isn't set (i.e. on localhost)
     }
     
     public static String getKeyStorePass(){

@@ -32,7 +32,7 @@ public class SecureAppSpark2 {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "keystores/ecikeystore2.p12"; //returns default keystore if keystore isn't set (i.e. on localhost)
+        return "keystores/ecikeystore1.p12"; //returns default keystore if keystore isn't set (i.e. on localhost)
     }
     
     public static String getKeyStorePass(){

@@ -70,6 +70,7 @@ public class SecureUrlReader {
             String inputLine = null;
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
+                respuesta += inputLine;
             }
         } catch (IOException e) {
             e.printStackTrace();

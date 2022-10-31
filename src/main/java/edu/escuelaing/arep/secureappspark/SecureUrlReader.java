@@ -17,31 +17,38 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
 public class SecureUrlReader {
-    public static void main(String[] args) throws FileNotFoundException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, KeyManagementException {
-       /*// Create a file and a password representation
-        File trustStoreFile = new File("keystores/ecikeystore.p12");
-        char[] trustStorePassword = "123456".toCharArray();
+    public static void trustStore(String keyPath, String pass) throws FileNotFoundException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, KeyManagementException {
+       // Create a file and a password representation
+        File trustStoreFile = new File(keyPath);
+        char[] trustStorePassword = pass.toCharArray();
+        
         // Load the trust store, the default type is "pkcs12", the alternative is "jks"
         KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
         trustStore.load(new FileInputStream(trustStoreFile), trustStorePassword);
+        
         // Get the singleton instance of the TrustManagerFactory
         TrustManagerFactory tmf = TrustManagerFactory
                 .getInstance(TrustManagerFactory.getDefaultAlgorithm());
 
         // Itit the TrustManagerFactory using the truststore object
         tmf.init(trustStore);
+        
         //Set the default global SSLContext so all the connections will use it
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, tmf.getTrustManagers(), null);
-        SSLContext.setDefault(sslContext);*/
+        SSLContext.setDefault(sslContext);
+       
+        
         // We can now read this URL
         readURL("https://localhost:5000/hello");
+        
         // This one can't be read because the Java default truststore has been
         // changed.
         readURL("https://www.google.com"); 
     }
     
-    private static void readURL(String siteToRead) {
+    static String readURL(String siteToRead) {
+        String respuesta = "";
         try {
             URL siteURL = new URL(siteToRead);
             URLConnection urlConnection = siteURL.openConnection();
@@ -67,5 +74,6 @@ public class SecureUrlReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 }
